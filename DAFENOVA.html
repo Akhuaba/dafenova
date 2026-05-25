@@ -1,0 +1,1917 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAFENOVA VENTURES | Kasoa, Ghana</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A96E;
+    --gold-light: #E2C89A;
+    --gold-dim: #8A6E44;
+    --dark-base: #0B0C0E;
+    --dark-surface: #111318;
+    --dark-card: #161A22;
+    --dark-border: rgba(201,169,110,0.15);
+    --dark-border-strong: rgba(201,169,110,0.35);
+    --text-primary: #EDE8DF;
+    --text-secondary: #9A9488;
+    --text-muted: #5C5850;
+    --accent-teal: #3ECFB2;
+    --accent-red: #C95555;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+    --nav-h: 72px;
+    --max-w: 1200px;
+    --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  }
+ 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    background: var(--dark-base);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+ 
+  /* ─── NOISE TEXTURE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+ 
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    background: rgba(11,12,14,0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--dark-border);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+  }
+ 
+  .nav-logo {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    text-decoration: none;
+  }
+  .nav-logo-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+  .nav-logo-sub {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    color: var(--text-muted);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+ 
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: color 0.3s var(--ease);
+    position: relative;
+    padding-bottom: 2px;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.3s var(--ease);
+  }
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--gold-light);
+  }
+  .nav-links a:hover::after, .nav-links a.active::after {
+    width: 100%;
+  }
+ 
+  .nav-cta {
+    background: var(--gold);
+    color: var(--dark-base) !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 2px;
+    font-weight: 600 !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase;
+    transition: background 0.3s var(--ease), transform 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
+  .nav-cta::after { display: none !important; }
+ 
+  /* ─── PAGES ─── */
+  .page { display: none; }
+  .page.active { display: block; }
+ 
+  /* ─── SECTION WRAPPER ─── */
+  .container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+  }
+ 
+  /* ─── SECTION LABELS ─── */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .label::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--gold-dim);
+  }
+ 
+  /* ─── HERO ─── */
+  #home-hero {
+    min-height: 100vh;
+    padding-top: var(--nav-h);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+ 
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,169,110,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,169,110,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .hero-bg-radial {
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(201,169,110,0.07) 0%, transparent 60%);
+    pointer-events: none;
+  }
+ 
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 6rem clamp(1.5rem, 5vw, 4rem) 6rem;
+    animation: fadeUp 1s var(--ease) both;
+  }
+ 
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+ 
+  .hero-headline {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+  .hero-headline em {
+    font-style: italic;
+    color: var(--gold);
+  }
+ 
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 480px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+ 
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+ 
+  .btn-primary {
+    background: var(--gold);
+    color: var(--dark-base);
+    padding: 0.875rem 2rem;
+    border: none;
+    border-radius: 2px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.3s var(--ease), transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+ 
+  .btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    padding: 0.875rem 2rem;
+    border: 1px solid var(--dark-border-strong);
+    border-radius: 2px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: border-color 0.3s var(--ease), color 0.3s var(--ease), transform 0.2s;
+  }
+  .btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+    transform: translateY(-2px);
+  }
+ 
+  .hero-visual {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 1.4s var(--ease) both;
+  }
+ 
+  .hero-emblem {
+    position: relative;
+    width: 360px;
+    height: 360px;
+  }
+  .emblem-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid var(--dark-border);
+    animation: spin linear infinite;
+  }
+  .emblem-ring-1 { inset: 0; border-color: rgba(201,169,110,0.2); animation-duration: 60s; }
+  .emblem-ring-2 { inset: 20px; border-color: rgba(201,169,110,0.12); animation-duration: 45s; animation-direction: reverse; }
+  .emblem-ring-3 { inset: 60px; border-color: rgba(201,169,110,0.08); animation-duration: 30s; }
+  .emblem-core {
+    position: absolute;
+    inset: 100px;
+    border-radius: 50%;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border-strong);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .emblem-letter {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .emblem-tagline {
+    font-family: var(--font-mono);
+    font-size: 0.45rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.6;
+  }
+ 
+  .hero-stat {
+    position: absolute;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    padding: 1rem 1.25rem;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .hero-stat:nth-child(1) { bottom: 20%; left: 5%; animation: fadeUp 1.4s 0.4s var(--ease) both; }
+  .hero-stat:nth-child(2) { top: 25%; right: 5%; animation: fadeUp 1.4s 0.6s var(--ease) both; }
+  .hero-stat-number { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--gold); display: block; }
+  .hero-stat-label { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+ 
+  /* ─── DIVIDER ─── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--dark-border-strong), transparent);
+    margin: 0;
+  }
+ 
+  /* ─── SERVICES STRIP ─── */
+  #home-strip {
+    background: var(--dark-surface);
+    padding: 5rem 0;
+    overflow: hidden;
+  }
+ 
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--dark-border);
+  }
+ 
+  .service-card {
+    background: var(--dark-card);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s var(--ease);
+    cursor: pointer;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease);
+  }
+  .service-card:hover { background: #1A1F2A; }
+  .service-card:hover::before { transform: scaleX(1); }
+ 
+  .service-card-num {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.2em;
+    margin-bottom: 1.5rem;
+  }
+  .service-card-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .service-card-title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+  .service-card-text {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+ 
+  /* ─── WHY SECTION ─── */
+  #home-why {
+    padding: 7rem 0;
+    position: relative;
+  }
+ 
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 4rem;
+  }
+ 
+  .why-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 4vw, 3.75rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+  }
+  .why-headline strong {
+    color: var(--gold);
+    font-weight: 600;
+  }
+ 
+  .why-text {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+ 
+  .features-list { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; }
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 4px;
+    transition: border-color 0.3s var(--ease);
+  }
+  .feature-item:hover { border-color: var(--dark-border-strong); }
+  .feature-icon {
+    width: 36px; height: 36px;
+    background: rgba(201,169,110,0.08);
+    border: 1px solid var(--dark-border-strong);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .feature-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+  }
+  .feature-desc { font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.6; }
+ 
+  /* ─── HOW WE WORK ─── */
+  #home-how {
+    padding: 6rem 0;
+    background: var(--dark-surface);
+  }
+ 
+  .steps-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 4rem;
+    position: relative;
+  }
+  .steps-row::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: 12.5%; right: 12.5%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold-dim), rgba(201,169,110,0.3));
+    z-index: 0;
+  }
+ 
+  .step {
+    text-align: center;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .step-num {
+    width: 56px; height: 56px;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border-strong);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin: 0 auto 1.5rem;
+  }
+  .step-title { font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; }
+  .step-text { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
+ 
+  /* ─── HOME CTA ─── */
+  #home-cta {
+    padding: 7rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  #home-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(201,169,110,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .cta-sub { color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 0.9375rem; }
+  .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+ 
+  /* ─── ABOUT PAGE ─── */
+  .page-banner {
+    min-height: 45vh;
+    display: flex;
+    align-items: flex-end;
+    padding-top: var(--nav-h);
+    position: relative;
+    overflow: hidden;
+  }
+  .page-banner-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,169,110,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,169,110,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .page-banner-radial {
+    position: absolute;
+    bottom: -40%; left: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,169,110,0.06) 0%, transparent 60%);
+  }
+  .page-banner-content {
+    position: relative;
+    z-index: 2;
+    padding: 4rem 0;
+    width: 100%;
+  }
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300;
+    color: var(--text-primary);
+    line-height: 1.05;
+    margin-bottom: 1rem;
+  }
+  .page-title em { font-style: italic; color: var(--gold); }
+  .page-intro { font-size: 1.0625rem; color: var(--text-secondary); max-width: 600px; line-height: 1.8; }
+ 
+  /* ─── ABOUT STORY ─── */
+  #about-story { padding: 6rem 0; }
+ 
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .story-sidebar {
+    position: sticky;
+    top: calc(var(--nav-h) + 2rem);
+  }
+  .story-sidebar-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .story-sidebar-stat {
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--dark-border);
+  }
+  .sidebar-stat-num {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: block;
+  }
+  .sidebar-stat-label { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+ 
+  .story-body p {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+  }
+  .story-pullquote {
+    border-left: 2px solid var(--gold);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
+  .story-pullquote p {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--text-primary) !important;
+    font-style: italic;
+    line-height: 1.5;
+  }
+ 
+  /* ─── VALUES ─── */
+  #about-values { padding: 5rem 0; background: var(--dark-surface); }
+ 
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--dark-border);
+    margin-top: 3rem;
+    border: 1px solid var(--dark-border);
+  }
+  .value-item {
+    background: var(--dark-card);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: background 0.3s var(--ease);
+  }
+  .value-item:hover { background: #1A1F2A; }
+  .value-icon { font-size: 1.5rem; margin-bottom: 1rem; display: block; }
+  .value-name {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .value-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6; }
+ 
+  /* ─── WHO WE SERVE ─── */
+  #about-who { padding: 5rem 0; }
+ 
+  .serve-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+  .serve-card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 4px;
+    padding: 1.75rem 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+  .serve-card:hover { border-color: var(--dark-border-strong); transform: translateX(4px); }
+  .serve-card-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+  .serve-card-title { font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem; font-size: 0.9375rem; }
+  .serve-card-text { font-size: 0.85rem; color: var(--text-secondary); }
+ 
+  /* ─── MISSION/VISION ─── */
+  #about-mission { padding: 5rem 0; background: var(--dark-surface); }
+ 
+  .mv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .mv-card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 4px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .mv-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold);
+  }
+  .mv-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 1rem;
+  }
+  .mv-text {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+ 
+  /* ─── SERVICES PAGE ─── */
+  #services-grid-section { padding: 5rem 0; }
+ 
+  .services-page-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+ 
+  .svc-page-card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 4px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.4s var(--ease), transform 0.3s var(--ease);
+    cursor: pointer;
+  }
+  .svc-page-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease);
+  }
+  .svc-page-card:hover { border-color: var(--dark-border-strong); transform: translateY(-4px); }
+  .svc-page-card:hover::after { transform: scaleX(1); }
+ 
+  .svc-page-icon {
+    font-size: 2.25rem;
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+  .svc-page-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+  }
+  .svc-page-text {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+  .svc-page-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+  .svc-page-list li {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .svc-page-list li::before {
+    content: '—';
+    color: var(--gold-dim);
+  }
+  .svc-page-btn {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.3s var(--ease);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  .svc-page-btn:hover { gap: 0.75rem; }
+ 
+  /* ─── CONTACT PAGE ─── */
+  #contact-section { padding: 5rem 0; }
+ 
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 4rem;
+    margin-top: 4rem;
+  }
+ 
+  .contact-info-block { display: flex; flex-direction: column; gap: 1.25rem; }
+ 
+  .contact-card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 4px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: border-color 0.3s var(--ease);
+  }
+  .contact-card:hover { border-color: var(--dark-border-strong); }
+  .contact-card-icon {
+    width: 40px; height: 40px;
+    background: rgba(201,169,110,0.08);
+    border: 1px solid var(--dark-border-strong);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .contact-card-label { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .contact-card-value { color: var(--text-primary); font-size: 0.9375rem; font-weight: 500; }
+  .contact-card-sub { font-size: 0.8rem; color: var(--text-secondary); }
+ 
+  .contact-hours {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+  .hours-title { font-weight: 600; color: var(--text-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+  .hours-row { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--dark-border); font-size: 0.875rem; }
+  .hours-row:last-child { border-bottom: none; }
+  .hours-day { color: var(--text-secondary); }
+  .hours-time { color: var(--text-primary); }
+ 
+  /* ─── FORM ─── */
+  .contact-form-wrap {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 4px;
+    padding: 2.5rem;
+  }
+  .form-title {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+  .form-sub { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 2rem; }
+ 
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+  .form-group label { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--dark-border);
+    border-radius: 2px;
+    padding: 0.75rem 1rem;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s var(--ease);
+    width: 100%;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group select option { background: var(--dark-card); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+ 
+  .form-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .form-consent input[type="checkbox"] { margin-top: 3px; accent-color: var(--gold); }
+  .form-consent label { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+ 
+  .form-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--dark-base);
+    padding: 1rem;
+    border: none;
+    border-radius: 2px;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s var(--ease), transform 0.2s;
+  }
+  .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+ 
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+  }
+  .form-success.show { display: block; }
+  .form-success-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .form-success h3 { font-family: var(--font-display); font-size: 1.5rem; color: var(--gold); margin-bottom: 0.5rem; }
+  .form-success p { color: var(--text-secondary); font-size: 0.9rem; }
+ 
+  /* ─── FAQ ─── */
+  #contact-faq { padding: 5rem 0; background: var(--dark-surface); }
+ 
+  .faq-list { max-width: 780px; margin: 3rem auto 0; }
+  .faq-item { border-bottom: 1px solid var(--dark-border); }
+  .faq-q {
+    width: 100%; background: none; border: none; text-align: left;
+    padding: 1.5rem 0;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    transition: color 0.3s var(--ease);
+  }
+  .faq-q:hover { color: var(--gold-light); }
+  .faq-q-icon {
+    color: var(--gold);
+    font-size: 1.1rem;
+    transition: transform 0.3s var(--ease);
+    flex-shrink: 0;
+  }
+  .faq-q.open .faq-q-icon { transform: rotate(45deg); }
+  .faq-a {
+    display: none;
+    padding: 0 0 1.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+  .faq-a.open { display: block; }
+ 
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark-surface);
+    border-top: 1px solid var(--dark-border);
+    padding: 4rem 0 2rem;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  .footer-brand-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .footer-brand-text { font-size: 0.8125rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.25rem; max-width: 280px; }
+  .footer-social { display: flex; gap: 0.75rem; }
+  .footer-social-btn {
+    width: 36px; height: 36px;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.3s, background 0.3s;
+    color: var(--text-secondary);
+  }
+  .footer-social-btn:hover { border-color: var(--gold-dim); color: var(--gold); }
+  .footer-col-title { font-size: 0.7rem; font-weight: 600; color: var(--text-primary); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.25rem; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-links a { color: var(--text-muted); font-size: 0.8125rem; text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--gold-light); }
+  .footer-contact-row { display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-contact-item { font-size: 0.8125rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem; }
+  .footer-bottom {
+    border-top: 1px solid var(--dark-border);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-copy { font-size: 0.75rem; color: var(--text-muted); }
+  .footer-tagline {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+ 
+  /* ─── WHATSAPP FLOAT ─── */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 2rem; right: 2rem;
+    background: #25D366;
+    color: #fff;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    z-index: 50;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+    text-decoration: none;
+    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(37,211,102,0.5); }
+ 
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.3); }
+    50% { box-shadow: 0 4px 30px rgba(37,211,102,0.6); }
+  }
+ 
+  /* ─── MOBILE MENU ─── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px; height: 2px;
+    background: var(--text-primary);
+    transition: all 0.3s var(--ease);
+  }
+ 
+  @media (max-width: 900px) {
+    .nav-links { display: none; position: absolute; top: var(--nav-h); left: 0; right: 0; background: var(--dark-surface); flex-direction: column; padding: 1.5rem; border-bottom: 1px solid var(--dark-border); gap: 1rem; }
+    .nav-links.open { display: flex; }
+    .nav-hamburger { display: flex; }
+    .nav-cta { display: none; }
+    #home-hero { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .steps-row { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .steps-row::before { display: none; }
+    .values-grid { grid-template-columns: repeat(2, 1fr); }
+    .story-grid { grid-template-columns: 1fr; }
+    .story-sidebar { position: static; }
+    .mv-grid { grid-template-columns: 1fr; }
+    .serve-grid { grid-template-columns: 1fr; }
+    .services-page-grid { grid-template-columns: 1fr; }
+    .contact-layout { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .hero-content { padding: 4rem 1.5rem; }
+  }
+  @media (max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .values-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+ 
+<!-- ─── NAVIGATION ─── -->
+<nav>
+  <a class="nav-logo" href="#" onclick="showPage('home')">
+    <span class="nav-logo-name">DAFENOVA</span>
+    <span class="nav-logo-sub">Ventures · Kasoa, Ghana</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#" class="active" id="nav-home" onclick="showPage('home')">Home</a></li>
+    <li><a href="#" id="nav-about" onclick="showPage('about')">About & Services</a></li>
+    <li><a href="#" id="nav-contact" onclick="showPage('contact')">Contact</a></li>
+    <li><a href="#" class="nav-cta" onclick="showPage('contact')">Get a Quote</a></li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+ 
+<!-- ══════════════════════════════════════════════ HOME PAGE ══ -->
+<div class="page active" id="page-home">
+ 
+  <!-- HERO -->
+  <section id="home-hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-bg-radial"></div>
+ 
+    <div class="hero-content">
+      <div class="hero-eyebrow">Est. in Kasoa, Ghana &nbsp;·&nbsp; Trusted Since 2015</div>
+      <h1 class="hero-headline">
+        Reliable<br>Services for<br><em>Every Project</em>
+      </h1>
+      <p class="hero-sub">
+        DAFENOVA VENTURES delivers building construction, event planning, electrical supply, printing, stationery and transportation solutions — all under one dependable business.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="showPage('contact')">Request a Quote →</button>
+        <button class="btn-outline" onclick="showPage('about')">Our Services</button>
+      </div>
+    </div>
+ 
+    <div class="hero-visual">
+      <div class="hero-emblem">
+        <div class="emblem-ring emblem-ring-1"></div>
+        <div class="emblem-ring emblem-ring-2"></div>
+        <div class="emblem-ring emblem-ring-3"></div>
+        <div class="emblem-core">
+          <span class="emblem-letter">DV</span>
+          <span class="emblem-tagline">Practical Solutions<br>Reliable Service</span>
+        </div>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">10+</span>
+        <span class="hero-stat-label">Years Experience</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">6</span>
+        <span class="hero-stat-label">Service Divisions</span>
+      </div>
+    </div>
+  </section>
+ 
+  <div class="divider"></div>
+ 
+  <!-- SERVICES STRIP -->
+  <section id="home-strip">
+    <div class="container">
+      <div class="label">What We Offer</div>
+      <div class="services-grid">
+        <div class="service-card" onclick="showPage('about')">
+          <div class="service-card-num">01</div>
+          <span class="service-card-icon">🏗️</span>
+          <h3 class="service-card-title">Building & Road Construction</h3>
+          <p class="service-card-text">Residential, commercial and road-related construction support based on agreed job scope and site conditions.</p>
+        </div>
+        <div class="service-card" onclick="showPage('about')">
+          <div class="service-card-num">02</div>
+          <span class="service-card-icon">⚡</span>
+          <h3 class="service-card-title">Electrical Sales & Installation</h3>
+          <p class="service-card-text">Supply and installation of electrical products for homes, offices, events and project sites.</p>
+        </div>
+        <div class="service-card" onclick="showPage('about')">
+          <div class="service-card-num">03</div>
+          <span class="service-card-icon">🎉</span>
+          <h3 class="service-card-title">Event Planning</h3>
+          <p class="service-card-text">Full coordination for weddings, corporate functions, funerals, church events and community gatherings.</p>
+        </div>
+        <div class="service-card" onclick="showPage('about')">
+          <div class="service-card-num">04</div>
+          <span class="service-card-icon">🖨️</span>
+          <h3 class="service-card-title">Printing Services</h3>
+          <p class="service-card-text">Quality printing for business, school, event and organisational materials delivered with care.</p>
+        </div>
+        <div class="service-card" onclick="showPage('about')">
+          <div class="service-card-num">05</div>
+          <span class="service-card-icon">📦</span>
+          <h3 class="service-card-title">Stationery Supplies</h3>
+          <p class="service-card-text">Reliable supply of office, school and general stationery for individuals and organisations.</p>
+        </div>
+        <div class="service-card" onclick="showPage('about')">
+          <div class="service-card-num">06</div>
+          <span class="service-card-icon">🚚</span>
+          <h3 class="service-card-title">Transportation & Delivery</h3>
+          <p class="service-card-text">Dependable movement and delivery of goods, supplies and materials with attention to timing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- WHY CHOOSE -->
+  <section id="home-why">
+    <div class="container">
+      <div class="why-grid">
+        <div>
+          <div class="label">Why DAFENOVA</div>
+          <h2 class="why-headline">One Business.<br><strong>Many Solutions.</strong></h2>
+          <p class="why-text">
+            With approximately ten years of practical business experience, DAFENOVA VENTURES brings diverse services under one reliable identity — making coordination easier and delivery more dependable for every customer.
+          </p>
+          <button class="btn-primary" onclick="showPage('contact')">Start a Conversation →</button>
+        </div>
+        <ul class="features-list">
+          <li class="feature-item">
+            <div class="feature-icon">🏆</div>
+            <div>
+              <div class="feature-title">Decade of Experience</div>
+              <div class="feature-desc">Approximately ten years of practical business experience serving diverse customer needs across Ghana.</div>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-icon">🔗</div>
+            <div>
+              <div class="feature-title">Multiple Services, One Place</div>
+              <div class="feature-desc">From construction and electricals to events, printing, supplies and delivery — coordinate more through one trusted business.</div>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-icon">🤝</div>
+            <div>
+              <div class="feature-title">Customer-Focused Approach</div>
+              <div class="feature-desc">We listen to your requirements, agree on scope and focus on timely delivery with clear communication throughout.</div>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-icon">📍</div>
+            <div>
+              <div class="feature-title">Local Accessibility</div>
+              <div class="feature-desc">Based in Kasoa, positioned to serve customers within the local area and surrounding communities efficiently.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- HOW WE WORK -->
+  <section id="home-how">
+    <div class="container">
+      <div class="label">The Process</div>
+      <h2 style="font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;color:var(--text-primary);margin-top:.5rem;margin-bottom:0">How We Work</h2>
+      <div class="steps-row">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-title">Tell Us Your Need</div>
+          <div class="step-text">Reach us by call, WhatsApp or the quotation request form with your service requirement.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-title">We Discuss Scope</div>
+          <div class="step-text">We clarify the service scope, location, timeline and materials or support required.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-title">Agreed Quotation</div>
+          <div class="step-text">You receive a clear quotation or service arrangement before any work proceeds.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-title">Service & Follow-Up</div>
+          <div class="step-text">We carry out the service and remain available for follow-up and future needs.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- HOME CTA -->
+  <section id="home-cta">
+    <div class="container">
+      <div class="label">Get Started</div>
+      <h2 class="cta-headline">Need a Reliable<br>Service Provider?</h2>
+      <p class="cta-sub">Speak with DAFENOVA VENTURES about your construction, electrical, event, printing, stationery or delivery requirement.</p>
+      <div class="cta-actions">
+        <button class="btn-primary" onclick="showPage('contact')">Request a Quote →</button>
+        <a href="https://wa.me/233531572345?text=Hello%20DAFENOVA%20VENTURES.%20I%20would%20like%20to%20enquire%20about%20your%20services." class="btn-outline" target="_blank">💬 WhatsApp Us</a>
+        <a href="tel:0531572345" class="btn-outline">📞 Call Us</a>
+      </div>
+    </div>
+  </section>
+ 
+</div>
+<!-- ══ /HOME ══ -->
+ 
+ 
+<!-- ══════════════════════════════════════════════ ABOUT + SERVICES PAGE ══ -->
+<div class="page" id="page-about">
+ 
+  <!-- BANNER -->
+  <section class="page-banner">
+    <div class="page-banner-bg"></div>
+    <div class="page-banner-radial"></div>
+    <div class="container page-banner-content">
+      <div class="label">About & Services</div>
+      <h1 class="page-title">A Reliable <em>Multi-Service</em><br>Business Serving Ghana</h1>
+      <p class="page-intro">DAFENOVA VENTURES provides practical services that support homes, businesses, organisations, events and development projects across Kasoa and beyond.</p>
+    </div>
+  </section>
+ 
+  <div class="divider"></div>
+ 
+  <!-- OUR STORY -->
+  <section id="about-story">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-sidebar">
+          <div class="story-sidebar-title">Our<br>Story</div>
+          <div class="story-sidebar-stat">
+            <span class="sidebar-stat-num">~10</span>
+            <span class="sidebar-stat-label">Years in Business</span>
+          </div>
+          <div class="story-sidebar-stat">
+            <span class="sidebar-stat-num">6</span>
+            <span class="sidebar-stat-label">Service Divisions</span>
+          </div>
+          <div class="story-sidebar-stat">
+            <span class="sidebar-stat-num">1</span>
+            <span class="sidebar-stat-label">Trusted Business Identity</span>
+          </div>
+        </div>
+        <div class="story-body">
+          <div class="label">Who We Are</div>
+          <p>DAFENOVA VENTURES is a sole proprietorship based in Kasoa, Ghana. With approximately ten years of business experience, the enterprise has grown around everyday customer needs: getting projects completed, obtaining essential materials, organising events, printing important materials, securing stationery supplies and moving goods efficiently.</p>
+          <div class="story-pullquote">
+            <p>"Rather than operating as separate activities, DAFENOVA VENTURES brings these services under one dependable business identity."</p>
+          </div>
+          <p>This approach enables customers to work with a familiar service provider across several needs, while allowing the business to coordinate resources, suppliers and service delivery effectively. Whether you are a household, a business, an institution or a project client, our goal is to make the process easier from start to finish.</p>
+          <p>We are committed to serving customers with dependable support, careful coordination and practical solutions. Our reputation is built on reliability, integrity and a genuine commitment to customer satisfaction.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- MISSION & VISION -->
+  <section id="about-mission">
+    <div class="container">
+      <div class="label">Direction</div>
+      <div class="mv-grid">
+        <div class="mv-card">
+          <div class="mv-label">Our Mission</div>
+          <p class="mv-text">To provide dependable, practical and customer-focused services in construction, electrical works, events, printing, supplies and delivery, while building long-term relationships through reliability and responsible service delivery.</p>
+        </div>
+        <div class="mv-card">
+          <div class="mv-label">Our Vision</div>
+          <p class="mv-text">To become a trusted and recognised multi-service enterprise in Kasoa and surrounding areas, known for dependable service, good customer relations and steady business growth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- VALUES -->
+  <section id="about-values">
+    <div class="container">
+      <div class="label">Core Values</div>
+      <h2 style="font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;color:var(--text-primary);margin-top:.5rem">What We Stand For</h2>
+      <div class="values-grid">
+        <div class="value-item">
+          <span class="value-icon">🎯</span>
+          <div class="value-name">Reliability</div>
+          <div class="value-desc">We do what has been agreed and communicate clearly with every customer.</div>
+        </div>
+        <div class="value-item">
+          <span class="value-icon">✨</span>
+          <div class="value-name">Quality</div>
+          <div class="value-desc">We take care in service delivery and the selection of all supplies and materials.</div>
+        </div>
+        <div class="value-item">
+          <span class="value-icon">⚖️</span>
+          <div class="value-name">Integrity</div>
+          <div class="value-desc">Honest dealings, clear agreements and responsible business conduct always.</div>
+        </div>
+        <div class="value-item">
+          <span class="value-icon">❤️</span>
+          <div class="value-name">Customer Care</div>
+          <div class="value-desc">We understand customer needs and provide helpful, attentive support.</div>
+        </div>
+        <div class="value-item">
+          <span class="value-icon">📈</span>
+          <div class="value-name">Growth</div>
+          <div class="value-desc">We improve through experience, learning and strong customer relationships.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- WHO WE SERVE -->
+  <section id="about-who">
+    <div class="container">
+      <div class="label">Who We Serve</div>
+      <h2 style="font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;color:var(--text-primary);margin-top:.5rem">Our Customers</h2>
+      <div class="serve-grid">
+        <div class="serve-card">
+          <div class="serve-card-icon">🏠</div>
+          <div>
+            <div class="serve-card-title">Individuals & Households</div>
+            <div class="serve-card-text">Requiring projects, supplies, installations or delivery services for the home.</div>
+          </div>
+        </div>
+        <div class="serve-card">
+          <div class="serve-card-icon">🏢</div>
+          <div>
+            <div class="serve-card-title">Businesses & Offices</div>
+            <div class="serve-card-text">Requiring printing, stationery, electrical supply or delivery support.</div>
+          </div>
+        </div>
+        <div class="serve-card">
+          <div class="serve-card-icon">⛪</div>
+          <div>
+            <div class="serve-card-title">Schools, Churches & Associations</div>
+            <div class="serve-card-text">Requiring event coordination, supply or printing services for organised activities.</div>
+          </div>
+        </div>
+        <div class="serve-card">
+          <div class="serve-card-icon">🔧</div>
+          <div>
+            <div class="serve-card-title">Contractors & Project Clients</div>
+            <div class="serve-card-text">Requiring construction support, materials, electrical supply or transport.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- SERVICES DETAIL -->
+  <section id="services-grid-section" style="background:var(--dark-surface)">
+    <div class="container">
+      <div class="label">Our Services</div>
+      <h2 style="font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;color:var(--text-primary);margin-top:.5rem">Services Designed Around<br>Practical Customer Needs</h2>
+      <div class="services-page-grid">
+ 
+        <div class="svc-page-card">
+          <span class="svc-page-icon">🏗️</span>
+          <h3 class="svc-page-title">Building & Road Construction</h3>
+          <p class="svc-page-text">Construction support built around your project needs — from residential and commercial builds to road-related works.</p>
+          <ul class="svc-page-list">
+            <li>Building construction works and renovations</li>
+            <li>Road-related construction support</li>
+            <li>Material coordination and site delivery</li>
+            <li>Associated electrical supply where required</li>
+          </ul>
+          <button class="svc-page-btn" onclick="showPage('contact')">Discuss Your Project →</button>
+        </div>
+ 
+        <div class="svc-page-card">
+          <span class="svc-page-icon">⚡</span>
+          <h3 class="svc-page-title">Electrical Products & Installation</h3>
+          <p class="svc-page-text">Electrical supplies and installation support for homes, offices, projects and events — handled responsibly and safely.</p>
+          <ul class="svc-page-list">
+            <li>Retail of electrical products and accessories</li>
+            <li>Lighting, sockets, switches and fittings</li>
+            <li>Installation work based on customer needs</li>
+            <li>Supply for construction and events</li>
+          </ul>
+          <button class="svc-page-btn" onclick="showPage('contact')">Request Electrical Service →</button>
+        </div>
+ 
+        <div class="svc-page-card">
+          <span class="svc-page-icon">🎉</span>
+          <h3 class="svc-page-title">Event Planning</h3>
+          <p class="svc-page-text">Well-planned events with reliable coordination — from intimate gatherings to large corporate and community functions.</p>
+          <ul class="svc-page-list">
+            <li>Weddings, engagements and birthdays</li>
+            <li>Funerals, church and community events</li>
+            <li>Corporate and organisational functions</li>
+            <li>Printed materials and transport coordination</li>
+          </ul>
+          <button class="svc-page-btn" onclick="showPage('contact')">Plan an Event →</button>
+        </div>
+ 
+        <div class="svc-page-card">
+          <span class="svc-page-icon">🖨️</span>
+          <h3 class="svc-page-title">Printing Services</h3>
+          <p class="svc-page-text">Quality printing support for business, school, event and organisational needs — delivered on time and to standard.</p>
+          <ul class="svc-page-list">
+            <li>Business materials and branding prints</li>
+            <li>Event programmes and banners</li>
+            <li>School and institutional documents</li>
+            <li>Custom print orders as required</li>
+          </ul>
+          <button class="svc-page-btn" onclick="showPage('contact')">Get a Print Quote →</button>
+        </div>
+ 
+        <div class="svc-page-card">
+          <span class="svc-page-icon">📦</span>
+          <h3 class="svc-page-title">Stationery Supplies</h3>
+          <p class="svc-page-text">Reliable supply of office, school and general stationery items for individuals, businesses and institutions.</p>
+          <ul class="svc-page-list">
+            <li>Office stationery and consumables</li>
+            <li>School supplies and materials</li>
+            <li>Event and organisational stationery</li>
+            <li>Bulk supply orders available</li>
+          </ul>
+          <button class="svc-page-btn" onclick="showPage('contact')">Order Stationery →</button>
+        </div>
+ 
+        <div class="svc-page-card">
+          <span class="svc-page-icon">🚚</span>
+          <h3 class="svc-page-title">Transportation & Delivery</h3>
+          <p class="svc-page-text">Reliable movement and delivery support for goods, materials and supplies — standalone or as part of a larger service.</p>
+          <ul class="svc-page-list">
+            <li>Project and construction materials</li>
+            <li>Stationery, printed and electrical items</li>
+            <li>Event-related goods and equipment</li>
+            <li>General package and goods delivery</li>
+          </ul>
+          <button class="svc-page-btn" onclick="showPage('contact')">Arrange Delivery →</button>
+        </div>
+ 
+      </div>
+      <div style="text-align:center;margin-top:3rem;padding:2rem;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:4px">
+        <p style="color:var(--text-secondary);margin-bottom:1.25rem;font-size:.9375rem">Not certain which service fits your requirement? Contact us and explain what you need.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <button class="btn-primary" onclick="showPage('contact')">Request a Quote →</button>
+          <a href="https://wa.me/233531572345" class="btn-outline" target="_blank">💬 WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+</div>
+<!-- ══ /ABOUT ══ -->
+ 
+ 
+<!-- ══════════════════════════════════════════════ CONTACT PAGE ══ -->
+<div class="page" id="page-contact">
+ 
+  <!-- BANNER -->
+  <section class="page-banner">
+    <div class="page-banner-bg"></div>
+    <div class="page-banner-radial"></div>
+    <div class="container page-banner-content">
+      <div class="label">Get In Touch</div>
+      <h1 class="page-title">Contact<br><em>DAFENOVA</em></h1>
+      <p class="page-intro">We are available to discuss service enquiries, quotation requests and customer support needs. Reach out by phone, WhatsApp or the form below.</p>
+    </div>
+  </section>
+ 
+  <div class="divider"></div>
+ 
+  <!-- CONTACT BODY -->
+  <section id="contact-section">
+    <div class="container">
+      <div class="contact-layout">
+ 
+        <!-- LEFT: Info -->
+        <div>
+          <div class="label">Reach Us</div>
+          <h2 style="font-family:var(--font-display);font-size:1.75rem;font-weight:300;color:var(--text-primary);margin-bottom:1.5rem">Talk to Us Today</h2>
+          <div class="contact-info-block">
+ 
+            <div class="contact-card">
+              <div class="contact-card-icon">📍</div>
+              <div>
+                <div class="contact-card-label">Location</div>
+                <div class="contact-card-value">Kasoa, Ghana</div>
+                <div class="contact-card-sub">GhanaPost GPS: CG-1575-6450</div>
+              </div>
+            </div>
+ 
+            <div class="contact-card">
+              <div class="contact-card-icon">📞</div>
+              <div>
+                <div class="contact-card-label">Telephone</div>
+                <div class="contact-card-value"><a href="tel:0531572345" style="color:var(--gold);text-decoration:none">0531 572 345</a></div>
+              </div>
+            </div>
+ 
+            <div class="contact-card">
+              <div class="contact-card-icon">💬</div>
+              <div>
+                <div class="contact-card-label">WhatsApp</div>
+                <div class="contact-card-value"><a href="https://wa.me/233531572345" target="_blank" style="color:var(--gold);text-decoration:none">0531 572 345</a></div>
+                <div class="contact-card-sub">Click to open WhatsApp chat</div>
+              </div>
+            </div>
+ 
+            <div class="contact-card">
+              <div class="contact-card-icon">✉️</div>
+              <div>
+                <div class="contact-card-label">Email</div>
+                <div class="contact-card-value"><a href="mailto:dankrah51@gmail.com" style="color:var(--gold);text-decoration:none">dankrah51@gmail.com</a></div>
+              </div>
+            </div>
+ 
+            <div class="contact-hours">
+              <div class="hours-title">🕐 Working Hours</div>
+              <div class="hours-row"><span class="hours-day">Monday – Friday</span><span class="hours-time">8:00 AM – 6:00 PM</span></div>
+              <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">9:00 AM – 4:00 PM</span></div>
+              <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">By Appointment</span></div>
+            </div>
+ 
+            <!-- WhatsApp button -->
+            <a href="https://wa.me/233531572345?text=Hello%20DAFENOVA%20VENTURES.%20I%20would%20like%20to%20enquire%20about%20your%20services." target="_blank" class="btn-primary" style="justify-content:center;background:#25D366">💬 &nbsp;Open WhatsApp Chat</a>
+ 
+          </div>
+        </div>
+ 
+        <!-- RIGHT: Form -->
+        <div class="contact-form-wrap">
+          <div id="formBody">
+            <h2 class="form-title">Request a Quotation</h2>
+            <p class="form-sub">Fill in your details and we will get back to you to discuss your requirement.</p>
+ 
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="fname" placeholder="Your name" required>
+              </div>
+              <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="tel" id="fphone" placeholder="0XX XXX XXXX" required>
+              </div>
+            </div>
+ 
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" id="femail" placeholder="your@email.com">
+            </div>
+ 
+            <div class="form-group">
+              <label>Service of Interest *</label>
+              <select id="fservice">
+                <option value="">— Select a service —</option>
+                <option>Building & Road Construction</option>
+                <option>Electrical Products & Installation</option>
+                <option>Event Planning</option>
+                <option>Printing Services</option>
+                <option>Stationery Supplies</option>
+                <option>Transportation & Delivery</option>
+                <option>Multiple Services</option>
+                <option>Other / Not Sure</option>
+              </select>
+            </div>
+ 
+            <div class="form-group">
+              <label>Subject</label>
+              <input type="text" id="fsubject" placeholder="Brief subject line">
+            </div>
+ 
+            <div class="form-group">
+              <label>Your Message *</label>
+              <textarea id="fmessage" placeholder="Describe your requirement, location, timeline and any other details…"></textarea>
+            </div>
+ 
+            <div class="form-consent">
+              <input type="checkbox" id="fconsent">
+              <label for="fconsent">The information I provide will be used only to respond to my enquiry and discuss the requested service. I consent to DAFENOVA VENTURES contacting me regarding this request.</label>
+            </div>
+ 
+            <button class="form-submit" onclick="submitForm()">Send Enquiry →</button>
+          </div>
+ 
+          <div class="form-success" id="formSuccess">
+            <div class="form-success-icon">✅</div>
+            <h3>Enquiry Received!</h3>
+            <p>Thank you for contacting DAFENOVA VENTURES. Your request has been received. A representative will contact you using the details you provided to discuss the next steps.</p>
+            <br>
+            <button class="btn-outline" onclick="resetForm()">Send Another Enquiry</button>
+          </div>
+        </div>
+ 
+      </div>
+    </div>
+  </section>
+ 
+  <!-- FAQ -->
+  <section id="contact-faq">
+    <div class="container">
+      <div class="label">Common Questions</div>
+      <h2 style="font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;color:var(--text-primary);margin-top:.5rem">Frequently Asked Questions</h2>
+      <div class="faq-list">
+ 
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            What services does DAFENOVA VENTURES provide?
+            <span class="faq-q-icon">+</span>
+          </button>
+          <div class="faq-a">We provide building and road construction, transportation and delivery, electrical product retail and installation, event planning, stationery supply and printing services — all under one business.</div>
+        </div>
+ 
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Where is DAFENOVA VENTURES located?
+            <span class="faq-q-icon">+</span>
+          </button>
+          <div class="faq-a">We are based in Kasoa, Ghana. Service coverage for each specific request can be confirmed when you contact us with your location and requirements.</div>
+        </div>
+ 
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            How long has the business been operating?
+            <span class="faq-q-icon">+</span>
+          </button>
+          <div class="faq-a">DAFENOVA VENTURES has approximately ten years of business experience, built around everyday customer needs across multiple service areas.</div>
+        </div>
+ 
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            How can I request a quotation?
+            <span class="faq-q-icon">+</span>
+          </button>
+          <div class="faq-a">You can complete the quotation request form on this page, call us on 0531 572 345, or send a WhatsApp message with the service required, your location and relevant details.</div>
+        </div>
+ 
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Can you provide more than one service for a project?
+            <span class="faq-q-icon">+</span>
+          </button>
+          <div class="faq-a">Yes. Where applicable, customers can discuss combined needs such as event planning with printing and delivery, or construction with electrical supply and installation — all coordinated through DAFENOVA VENTURES.</div>
+        </div>
+ 
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            What details are needed for event planning?
+            <span class="faq-q-icon">+</span>
+          </button>
+          <div class="faq-a">Please include the event type, date, venue or preferred location, expected guest number, services required, preferred style or theme and your budget range where available.</div>
+        </div>
+ 
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Do you undertake electrical installation?
+            <span class="faq-q-icon">+</span>
+          </button>
+          <div class="faq-a">Electrical installation requests can be discussed according to the work needed, location and safety requirements. Appropriate and competent personnel are assigned for all relevant work, with safety as the priority.</div>
+        </div>
+ 
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Can I submit photos or documents with my request?
+            <span class="faq-q-icon">+</span>
+          </button>
+          <div class="faq-a">Yes. For detailed requests, you can share item lists, site photos, artwork, drawings or references via WhatsApp (0531 572 345) or by email to dankrah51@gmail.com alongside your enquiry.</div>
+        </div>
+ 
+      </div>
+    </div>
+  </section>
+ 
+</div>
+<!-- ══ /CONTACT ══ -->
+ 
+ 
+<!-- ─── FOOTER (shared) ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">DAFENOVA VENTURES</div>
+        <p class="footer-brand-text">Reliable services for construction, electrical needs, events, printing, stationery supplies and transportation. Based in Kasoa, Ghana.</p>
+        <p style="font-family:var(--font-mono);font-size:.65rem;color:var(--text-muted);letter-spacing:.15em;text-transform:uppercase;font-style:italic">Practical Solutions. Reliable Service. One Trusted Business.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="showPage('home')">Home</a></li>
+          <li><a href="#" onclick="showPage('about')">About Us</a></li>
+          <li><a href="#" onclick="showPage('about')">Services</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact Us</a></li>
+          <li><a href="#" onclick="showPage('contact')">Get a Quote</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="showPage('about')">Construction</a></li>
+          <li><a href="#" onclick="showPage('about')">Electrical</a></li>
+          <li><a href="#" onclick="showPage('about')">Event Planning</a></li>
+          <li><a href="#" onclick="showPage('about')">Printing</a></li>
+          <li><a href="#" onclick="showPage('about')">Stationery</a></li>
+          <li><a href="#" onclick="showPage('about')">Delivery</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-row">
+          <div class="footer-contact-item">📍 Kasoa, Ghana</div>
+          <div class="footer-contact-item"><a href="tel:0531572345" style="color:var(--text-muted);text-decoration:none">📞 0531 572 345</a></div>
+          <div class="footer-contact-item"><a href="https://wa.me/233531572345" target="_blank" style="color:var(--text-muted);text-decoration:none">💬 WhatsApp Us</a></div>
+          <div class="footer-contact-item"><a href="mailto:dankrah51@gmail.com" style="color:var(--text-muted);text-decoration:none">✉️ dankrah51@gmail.com</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 DAFENOVA VENTURES. All rights reserved. | <a href="#" style="color:var(--text-muted);text-decoration:none">Privacy Notice</a></div>
+      <div class="footer-tagline">GhanaPost GPS: CG-1575-6450</div>
+    </div>
+  </div>
+</footer>
+ 
+<!-- WhatsApp Float -->
+<a class="whatsapp-float" href="https://wa.me/233531572345?text=Hello%20DAFENOVA%20VENTURES.%20I%20would%20like%20to%20enquire%20about%20your%20services." target="_blank" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">💬</a>
+ 
+ 
+<script>
+  // ─── PAGE NAVIGATION ───
+  function showPage(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + page).classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    const navEl = document.getElementById('nav-' + page);
+    if (navEl) navEl.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // close mobile menu
+    document.getElementById('navLinks').classList.remove('open');
+  }
+ 
+  // ─── MOBILE MENU ───
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+ 
+  // ─── FAQ ───
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
+    if (!isOpen) {
+      answer.classList.add('open');
+      btn.classList.add('open');
+    }
+  }
+ 
+  // ─── FORM SUBMIT ───
+  function submitForm() {
+    const name = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('fphone').value.trim();
+    const service = document.getElementById('fservice').value;
+    const message = document.getElementById('fmessage').value.trim();
+    const consent = document.getElementById('fconsent').checked;
+ 
+    if (!name || !phone || !service || !message) {
+      alert('Please fill in all required fields (Name, Phone, Service and Message).');
+      return;
+    }
+    if (!consent) {
+      alert('Please confirm your consent to proceed.');
+      return;
+    }
+    document.getElementById('formBody').style.display = 'none';
+    document.getElementById('formSuccess').classList.add('show');
+  }
+ 
+  function resetForm() {
+    document.getElementById('formBody').style.display = 'block';
+    document.getElementById('formSuccess').classList.remove('show');
+    document.getElementById('fname').value = '';
+    document.getElementById('fphone').value = '';
+    document.getElementById('femail').value = '';
+    document.getElementById('fservice').value = '';
+    document.getElementById('fsubject').value = '';
+    document.getElementById('fmessage').value = '';
+    document.getElementById('fconsent').checked = false;
+  }
+ 
+  // ─── NAV CLICK INTERCEPT ───
+  document.querySelectorAll('.nav-links a, .footer-links a').forEach(link => {
+    link.addEventListener('click', function(e) { e.preventDefault(); });
+  });
+</script>
+</body>
+</html>
